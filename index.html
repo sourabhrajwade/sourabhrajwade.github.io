@@ -449,7 +449,7 @@
                     </h5>
                   </div>
                   <div>
-                      <form action="" method="post" role="form" class="contactForm">
+                      <form action="" method="post" role="form" class="contactForm" name="google-sheet">
                       <div id="sendmessage">Your message has been sent. Thank you!</div>
                       <div id="errormessage"></div>
                       <div class="row">
@@ -558,6 +558,15 @@
 
   <!-- Template Main Javascript File -->
   <script src="./app.js"></script>
-
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyCTuAEJUyJKIehulqEACS6hEICpEzM3hj2UfHz8Y9z57_Tkj-A/exec';
+    const form = document.forms['google-sheet'];
+    form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => alert("Thanks for Contacting me.! I Will Contact You Soon..."))
+                .catch(error => console.error('Error!', error.message))
+            })
+  </script>
 </body>
 </html>
